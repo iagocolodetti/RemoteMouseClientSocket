@@ -2,7 +2,6 @@ package br.com.iagocolodetti.remotemouse;
 
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -56,20 +55,20 @@ public class MainActivity extends AppCompatActivity {
 
         block = false;
 
-        llIP = (LinearLayout) findViewById(R.id.llIP);
-        llPorta = (LinearLayout) findViewById(R.id.llPorta);
-        llPixels = (LinearLayout) findViewById(R.id.llPixels);
-        llDelay = (LinearLayout) findViewById(R.id.llDelay);
-        clBotoes = (ConstraintLayout) findViewById(R.id.clBotoes);
+        llIP = findViewById(R.id.llIP);
+        llPorta = findViewById(R.id.llPorta);
+        llPixels = findViewById(R.id.llPixels);
+        llDelay = findViewById(R.id.llDelay);
+        clBotoes = findViewById(R.id.clBotoes);
 
-        etIP = (EditText) findViewById(R.id.etIP);
-        etPorta = (EditText) findViewById(R.id.etPorta);
-        etPixels = (EditText) findViewById(R.id.etPixels);
-        etDelay = (EditText) findViewById(R.id.etDelay);
+        etIP = findViewById(R.id.etIP);
+        etPorta = findViewById(R.id.etPorta);
+        etPixels = findViewById(R.id.etPixels);
+        etDelay = findViewById(R.id.etDelay);
 
-        btConectar = (Button) findViewById(R.id.btConectar);
+        btConectar = findViewById(R.id.btConectar);
 
-        tvConectado = (TextView) findViewById(R.id.tvConectado);
+        tvConectado = findViewById(R.id.tvConectado);
 
         final Button[] btClick = new Button[4];
         btClick[0] = findViewById(R.id.btClickE);
@@ -78,18 +77,18 @@ public class MainActivity extends AppCompatActivity {
         btClick[3] = findViewById(R.id.btClick2E);
 
         final Button[] btMover = new Button[8];
-        btMover[0] = (Button) findViewById(R.id.btMoverC);
-        btMover[1] = (Button) findViewById(R.id.btMoverB);
-        btMover[2] = (Button) findViewById(R.id.btMoverE);
-        btMover[3] = (Button) findViewById(R.id.btMoverD);
-        btMover[4] = (Button) findViewById(R.id.btMoverEC);
-        btMover[5] = (Button) findViewById(R.id.btMoverDC);
-        btMover[6] = (Button) findViewById(R.id.btMoverEB);
-        btMover[7] = (Button) findViewById(R.id.btMoverDB);
+        btMover[0] = findViewById(R.id.btMoverC);
+        btMover[1] = findViewById(R.id.btMoverB);
+        btMover[2] = findViewById(R.id.btMoverE);
+        btMover[3] = findViewById(R.id.btMoverD);
+        btMover[4] = findViewById(R.id.btMoverEC);
+        btMover[5] = findViewById(R.id.btMoverDC);
+        btMover[6] = findViewById(R.id.btMoverEB);
+        btMover[7] = findViewById(R.id.btMoverDB);
 
         final Button[] btScroll = new Button[2];
-        btScroll[0] = (Button) findViewById(R.id.btScrollC);
-        btScroll[1] = (Button) findViewById(R.id.btScrollB);
+        btScroll[0] = findViewById(R.id.btScrollC);
+        btScroll[1] = findViewById(R.id.btScrollB);
 
         etIP.setFilters(IPFilter());
 
@@ -109,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, "A porta deve ser no mínimo " + MIN_PORT + " e no máximo " + MAX_PORT + ".", Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        desconnect();
+                        disconnect();
                     }
                 } else {
                     Toast.makeText(MainActivity.this, "Tentando realizar uma conexão, aguarde...", Toast.LENGTH_SHORT).show();
@@ -358,7 +357,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void desconnect() {
+    private void disconnect() {
         if (rm != null && !rm.isClosed()) {
             rm.close();
         }
@@ -406,7 +405,7 @@ public class MainActivity extends AppCompatActivity {
             threadMouseClick.start();
         } else {
             Toast.makeText(MainActivity.this, "Conexão encerrada de maneira inesperada, verifique se o servidor está aberto ou se a rede está ativa.", Toast.LENGTH_LONG).show();
-            desconnect();
+            disconnect();
         }
     }
 
@@ -430,7 +429,7 @@ public class MainActivity extends AppCompatActivity {
             }
         } else {
             Toast.makeText(MainActivity.this, "Conexão encerrada de maneira inesperada, verifique se o servidor está aberto ou se a rede está ativa.", Toast.LENGTH_LONG).show();
-            desconnect();
+            disconnect();
         }
     }
 
@@ -457,7 +456,7 @@ public class MainActivity extends AppCompatActivity {
             }
         } else {
             Toast.makeText(MainActivity.this, "Conexão encerrada de maneira inesperada,\nverifique se o servidor está aberto ou se a rede está ativa.", Toast.LENGTH_LONG).show();
-            desconnect();
+            disconnect();
         }
     }
 
